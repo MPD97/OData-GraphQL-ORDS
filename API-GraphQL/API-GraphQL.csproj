@@ -5,5 +5,9 @@
         <RootNamespace>API_GraphQL</RootNamespace>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Folder Include="Controllers" />
+    </ItemGroup>
+
 
 </Project>
