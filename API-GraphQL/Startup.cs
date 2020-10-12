@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using DatabaseLibrary;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -26,12 +27,14 @@ namespace API_GraphQL
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
             services.AddDbContext<ExampleContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("LocalDB")));
+            
+            
+            services.AddAutoMapper(c=>c.AddProfile<AutoMapping>(),typeof(Startup));
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ExampleContext context)
         {
             if (env.IsDevelopment())
             {
@@ -46,5 +49,6 @@ namespace API_GraphQL
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
+       
     }
 }
