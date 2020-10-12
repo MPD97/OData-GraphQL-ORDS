@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using API_GraphQL.Services;
 using AutoMapper;
 using DatabaseLibrary;
 using Microsoft.AspNetCore.Builder;
@@ -29,7 +30,8 @@ namespace API_GraphQL
         {
             services.AddDbContext<ExampleContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("LocalDB")));
-            
+
+            services.AddScoped<PersonRepository>();
             
             services.AddAutoMapper(c=>c.AddProfile<AutoMapping>(),typeof(Startup));
         }
