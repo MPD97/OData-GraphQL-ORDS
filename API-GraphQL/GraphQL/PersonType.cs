@@ -7,7 +7,8 @@ namespace API_GraphQL.GraphQL
     {
         public PersonType()
         {
-            Field(x => x.PersonId);
+            Name = "Person";
+            Field(x => x.PersonId).Description($"Person's ID");
             Field(x => x.FirstName);
             Field(x => x.SecondName);
             Field(x => x.LastName);
